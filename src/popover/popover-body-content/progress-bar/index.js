@@ -15,7 +15,7 @@ class ProgressBar extends React.Component {
   timer = null;
 
   componentDidMount () {
-    this.timer = setInterval(this.progress, 50)
+    this.timer = setInterval(this.progress, 20)
   }
 
   componentWillUnmount () {
