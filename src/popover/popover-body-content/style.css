@@ -6,7 +6,7 @@
 }
 
 .p_body-top {
-  padding-bottom: 25px;
+  padding-bottom: 40px;
   text-align: center;
 }
 
@@ -22,11 +22,13 @@
   color: white;
   display: inline-block;
   font-weight: bold;
-  padding: 8px 5px;
+  padding: 5px;
+  vertical-align: sub;
 }
 
 .p_body-bottom {
   color: #787878;
+  font-weight: bold;
   text-align: center;
   vertical-align: middle;
 }
