@@ -54,7 +54,7 @@ class ProgressBar extends React.Component {
         <div
           className='progress_bar-numeric-value'
           style={{
-            left: (this.state.calculatedCompleted - 5) + '%'
+            left: (this.state.calculatedCompleted - 6) + '%'
           }}
         >
           <i style={{display: 'block'}} className='material-icons'>keyboard_arrow_up</i>

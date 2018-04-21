@@ -1,13 +1,13 @@
 .p_body-content {
-  border: black solid 1px;
   background-color: white;
   border-radius: 8px;
+  border: black solid 1px;
   padding: 13px 10px 26px 10px;
 }
 
 .p_body-top {
-  text-align: center;
   padding-bottom: 25px;
+  text-align: center;
 }
 
 .p_body-span {
@@ -17,10 +17,22 @@
 }
 
 .p_body-target {
-  display: inline-block;
   background: #929292;
   border: 1px black solid;
-  padding: 8px 5px;
   color: white;
+  display: inline-block;
   font-weight: bold;
+  padding: 8px 5px;
+}
+
+.p_body-bottom {
+  color: #787878;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.p_body-info-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 20px;
 }
