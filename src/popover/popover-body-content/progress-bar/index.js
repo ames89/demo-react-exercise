@@ -9,30 +9,32 @@ const styles = {
   }
 }
 
-const END = 58
+const END = 56 * 100 / 126
 
 class LinearDeterminate extends React.Component {
   state = {
     completed: 0
   };
 
+  timer = null;
+
   componentDidMount () {
-    this.timer = setInterval(this.progress, 500)
+    this.timer = setInterval(this.progress, 10)
   }
 
   componentWillUnmount () {
-    clearInterval(this.timer)
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
   }
-
-  timer = null;
 
   progress = () => {
     const { completed } = this.state
-    if (completed === END) {
-      this.setState({ completed: 0 })
-    } else {
-      const diff = Math.random() * 10
+    if (completed !== END) {
+      const diff = 1
       this.setState({ completed: Math.min(completed + diff, END) })
+    } else {
+      clearInterval(this.timer)
     }
   };
 
@@ -40,9 +42,7 @@ class LinearDeterminate extends React.Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <LinearProgress variant='determinate' value={this.state.completed} />
-        <br />
-        <LinearProgress color='secondary' variant='determinate' value={this.state.completed} />
+        <LinearProgress determinate value={this.state.completed} />
       </div>
     )
   }

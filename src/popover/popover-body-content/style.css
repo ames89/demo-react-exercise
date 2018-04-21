@@ -1,0 +1,16 @@
+.p_body-content {
+  border: black solid 1px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 13px 10px 26px 10px;
+}
+
+.p_body-top{
+  text-align: center;
+}
+
+.p_body-span{
+  color: #787878;
+  font-weight: bold;
+  margin-right: 10px;
+}
