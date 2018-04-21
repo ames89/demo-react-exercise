@@ -10,6 +10,10 @@ const PopoverBodyContent = () => {
       <div className='p_body-top'>
         <span className='p_body-span'>Reached:</span>
         <ProgressBar />
+        <div className='p_body-target'>
+          Target<br/>
+          $125
+        </div>
       </div>
     </div>
   )

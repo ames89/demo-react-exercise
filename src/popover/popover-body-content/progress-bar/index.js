@@ -1,55 +1,68 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from 'material-ui/styles'
 import { LinearProgress } from 'material-ui/Progress'
 
-const styles = {
-  root: {
-    flexGrow: 1
-  }
-}
+import './style.css'
 
-const END = 56 * 100 / 126
+const REALEND = 56
+const VISUALEND = Math.round(REALEND * 100 / 125)
 
-class LinearDeterminate extends React.Component {
+class ProgressBar extends React.Component {
   state = {
-    completed: 0
+    calculatedCompleted: 0, // the number from 0 to 100 to visualize the progress bar
+    visualCompleted: 0 // the visible number
   };
 
   timer = null;
 
   componentDidMount () {
-    this.timer = setInterval(this.progress, 10)
+    this.timer = setInterval(this.progress, 50)
   }
 
   componentWillUnmount () {
-    if (this.timer) {
-      clearInterval(this.timer)
-    }
+    clearInterval(this.timer)
   }
 
   progress = () => {
-    const { completed } = this.state
-    if (completed !== END) {
-      const diff = 1
-      this.setState({ completed: Math.min(completed + diff, END) })
+    const {
+      calculatedCompleted,
+      visualCompleted
+    } = this.state
+    if (
+      calculatedCompleted !== VISUALEND ||
+      visualCompleted !== REALEND
+    ) {
+      this.setState({
+        calculatedCompleted: Math.min(calculatedCompleted + 1, VISUALEND),
+        visualCompleted: Math.min(visualCompleted + 1.24, REALEND)
+      })
     } else {
       clearInterval(this.timer)
     }
   };
 
   render () {
-    const { classes } = this.props
     return (
-      <div className={classes.root}>
-        <LinearProgress determinate value={this.state.completed} />
+      <div className='progress_bar-container'>
+        <LinearProgress
+          variant='determinate'
+          value={this.state.calculatedCompleted}
+          classes={{
+            colorPrimary: 'progress_bar-color-primary',
+            barColorPrimary: 'progress_bar-bar-color-primary'
+          }}
+        />
+        <div
+          className='progress_bar-numeric-value'
+          style={{
+            left: (this.state.calculatedCompleted - 5) + '%'
+          }}
+        >
+          <i style={{display: 'block'}} className='material-icons'>keyboard_arrow_up</i>
+          ${Math.round(this.state.visualCompleted)}
+        </div>
       </div>
     )
   }
 }
 
-LinearDeterminate.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(LinearDeterminate)
+export default ProgressBar
